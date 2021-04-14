@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: spring-boot-demo
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        hostname: localhost
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 660s
+        serviceName: service-spring-boot-demo
+    # 注册到consul的服务名称
+#        management-port: 10091
+#        health-check-url: http://localhost:10091/actuator/health
+#management:
+#  server:
+#    port: 11000
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#      base-path: /management
+  activemq:
+    in-memory: false
+    pool:
+      #强制的连接过期时间，与idleTimeout的区别在于：idleTimeout是在连接空闲一段时间失效，而expiryTimeout不管当前连接的情况，只要达到指定时间就失效。默认为0，never
+#      expiry-timeout: 0
+      #空闲的连接过期时间，默认为30秒
+      idle-timeout: 30000
+      #连接池最大连接数
+      max-connections: 10
+      #true表示使用连接池；false时，每发送一条数据创建一个连接
+      enabled: true
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
