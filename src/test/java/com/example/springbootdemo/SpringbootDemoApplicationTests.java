@@ -15,4 +15,13 @@ class SpringbootDemoApplicationTests {
 			activityService.getOne();
 	}
 
+	@Test
+	void query() {
+		try {
+			activityService.getUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
